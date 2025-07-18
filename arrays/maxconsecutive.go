@@ -1,28 +1,48 @@
 package arrays
 
-func findMaxConsecutiveOnes(nums []int) int {
+func findMaxConsecutive(nums []int) int {
 	if len(nums) == 0 {
 		return 0
 	}
 
-	previousNum := nums[0]
+	max, current := 1, 1
 
-	if len(nums) == 1 {
-		return previousNum
-	}
-
-    var maxCons, currentCons int = 1, 1
-
-	for _, num := range nums[2:] {
-		if num == previousNum {
-			currentCons++
+	for i := 1; i < len(nums); i++ {
+		if nums[i] == nums[i-1] {
+			current++
 		} else {
-			if currentCons > maxCons {
-				maxCons = currentCons
-				currentCons = 1
+			if current > max {
+				max = current
 			}
+
+			current = 1
 		}
 	}
 
-	return maxCons
+	if current > max {
+		max = current
+	}
+
+	return max
+}
+
+func findMaxConsecutiveOne(nums []int) int {
+	if len(nums) == 0 {
+		return 0
+	}
+
+	var max, current int
+
+	for _, num := range nums {
+		if num == 1 {
+			current++
+			if current > max {
+				max = current
+			}
+		} else {
+			current = 0
+		}
+	}
+
+	return max
 }
