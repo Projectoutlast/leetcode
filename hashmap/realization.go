@@ -1,7 +1,5 @@
 package hashmap
 
-import "strings"
-
 func canConstruct(ransomNote string, magazine string) bool {
 	setArrange := make(map[rune]int, len(magazine))
 
@@ -26,8 +24,4 @@ func canConstruct(ransomNote string, magazine string) bool {
 	}
 
 	return true
-}
-
-func justForFun(ransomNote string, magazine string) bool {
-	return strings.Contains(magazine, ransomNote)
 }
