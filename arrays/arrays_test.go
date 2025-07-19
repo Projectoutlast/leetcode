@@ -69,3 +69,31 @@ func TestFindMaxConsecutiveOne(t *testing.T) {
 		}
 	}
 }
+
+func TestFindNumbers(t *testing.T) {
+	t.Parallel()
+
+	tests := []struct{
+		nums []int
+		want int
+	}{
+		{
+			nums: []int{12,345,2,6,7896},
+			want: 2,
+		},
+		{
+			nums: []int{555,901,482,1771},
+			want: 1,
+		},
+		{
+			nums: []int{10,0,3404,34958443},
+			want: 3,
+		},
+	}
+
+	for _, test := range tests {
+		if got := findNumbers(test.nums); got != test.want {
+			t.Errorf("findNumbers(%v) = %v, want %v", test.nums, got, test.want)
+		}
+	}
+}
