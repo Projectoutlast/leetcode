@@ -1,6 +1,9 @@
 package arrays
 
-import "testing"
+import (
+	"slices"
+	"testing"
+)
 
 func TestFindMaxConsecutive(t *testing.T) {
 	t.Parallel()
@@ -94,6 +97,54 @@ func TestFindNumbers(t *testing.T) {
 	for _, test := range tests {
 		if got := findNumbers(test.nums); got != test.want {
 			t.Errorf("findNumbers(%v) = %v, want %v", test.nums, got, test.want)
+		}
+	}
+}
+
+func TestSortedSquares(t *testing.T) {
+	t.Parallel()
+
+	tests := []struct{
+		nums []int
+		want []int
+	}{
+		{
+			nums: []int{-4,-1,0,3,10},
+			want: []int{0,1,9,16,100},
+		},
+		{
+			nums: []int{-7,-3,2,3,11},
+			want: []int{4,9,9,49,121},
+		},
+	}
+
+	for _, test := range tests {
+		if got := sortedSquares(test.nums); !slices.Equal(got, test.want) {
+			t.Errorf("sortedSquares(%v) = %v, want %v", test.nums, got, test.want)
+		}
+	}
+}
+
+func TestSortedSquaresFast(t *testing.T) {
+	t.Parallel()
+
+	tests := []struct{
+		nums []int
+		want []int
+	}{
+		{
+			nums: []int{-4,-1,0,3,10},
+			want: []int{0,1,9,16,100},
+		},
+		{
+			nums: []int{-7,-3,2,3,11},
+			want: []int{4,9,9,49,121},
+		},
+	}
+
+	for _, test := range tests {
+		if got := sortedSquaresFast(test.nums); !slices.Equal(got, test.want) {
+			t.Errorf("sortedSquaresFast(%v) = %v, want %v", test.nums, got, test.want)
 		}
 	}
 }
