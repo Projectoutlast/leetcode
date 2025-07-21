@@ -1,8 +1,9 @@
 package arrays
 
 import (
-	"slices"
 	"testing"
+
+	helper "leetcode/helpers"
 )
 
 func TestFindMaxConsecutive(t *testing.T) {
@@ -76,20 +77,20 @@ func TestFindMaxConsecutiveOne(t *testing.T) {
 func TestFindNumbers(t *testing.T) {
 	t.Parallel()
 
-	tests := []struct{
+	tests := []struct {
 		nums []int
 		want int
 	}{
 		{
-			nums: []int{12,345,2,6,7896},
+			nums: []int{12, 345, 2, 6, 7896},
 			want: 2,
 		},
 		{
-			nums: []int{555,901,482,1771},
+			nums: []int{555, 901, 482, 1771},
 			want: 1,
 		},
 		{
-			nums: []int{10,0,3404,34958443},
+			nums: []int{10, 0, 3404, 34958443},
 			want: 3,
 		},
 	}
@@ -104,22 +105,22 @@ func TestFindNumbers(t *testing.T) {
 func TestSortedSquares(t *testing.T) {
 	t.Parallel()
 
-	tests := []struct{
+	tests := []struct {
 		nums []int
 		want []int
 	}{
 		{
-			nums: []int{-4,-1,0,3,10},
-			want: []int{0,1,9,16,100},
+			nums: []int{-4, -1, 0, 3, 10},
+			want: []int{0, 1, 9, 16, 100},
 		},
 		{
-			nums: []int{-7,-3,2,3,11},
-			want: []int{4,9,9,49,121},
+			nums: []int{-7, -3, 2, 3, 11},
+			want: []int{4, 9, 9, 49, 121},
 		},
 	}
 
 	for _, test := range tests {
-		if got := sortedSquares(test.nums); !slices.Equal(got, test.want) {
+		if got := sortedSquares(test.nums); !helper.CompareSlices(got, test.want) {
 			t.Errorf("sortedSquares(%v) = %v, want %v", test.nums, got, test.want)
 		}
 	}
@@ -128,23 +129,91 @@ func TestSortedSquares(t *testing.T) {
 func TestSortedSquaresFast(t *testing.T) {
 	t.Parallel()
 
-	tests := []struct{
+	tests := []struct {
 		nums []int
 		want []int
 	}{
 		{
-			nums: []int{-4,-1,0,3,10},
-			want: []int{0,1,9,16,100},
+			nums: []int{-4, -1, 0, 3, 10},
+			want: []int{0, 1, 9, 16, 100},
 		},
 		{
-			nums: []int{-7,-3,2,3,11},
-			want: []int{4,9,9,49,121},
+			nums: []int{-7, -3, 2, 3, 11},
+			want: []int{4, 9, 9, 49, 121},
 		},
 	}
 
 	for _, test := range tests {
-		if got := sortedSquaresFast(test.nums); !slices.Equal(got, test.want) {
+		if got := sortedSquaresFast(test.nums); !helper.CompareSlices(got, test.want) {
 			t.Errorf("sortedSquaresFast(%v) = %v, want %v", test.nums, got, test.want)
+		}
+	}
+}
+
+func TestDuplicateZeros(t *testing.T) {
+	t.Parallel()
+
+	tests := []struct {
+		arr  []int
+		want []int
+	}{
+		{
+			arr:  []int{1, 0, 2, 3, 0, 4, 5, 0},
+			want: []int{1, 0, 0, 2, 3, 0, 0, 4},
+		},
+		{
+			arr:  []int{1, 2, 3},
+			want: []int{1, 2, 3},
+		},
+		{
+			arr:  []int{5, 0, 0, 7, 8, 10, 0, 0},
+			want: []int{5, 0, 0, 0, 0, 7, 8, 10},
+		},
+	}
+
+	for _, test := range tests {
+		if got := duplicateZeros(test.arr); !helper.CompareSlices(got, test.want) {
+			t.Errorf("duplicateZeros(%v) = %v, want %v", test.arr, got, test.want)
+		}
+	}
+}
+
+func TestMerge(t *testing.T) {
+	t.Parallel()
+
+	tests := []struct {
+		nums1 []int
+		m     int
+		nums2 []int
+		n     int
+		want  []int
+	}{
+		{
+			nums1: []int{1, 2, 3, 0, 0, 0},
+			m:     3,
+			nums2: []int{2, 5, 6},
+			n:     3,
+			want:  []int{1, 2, 2, 3, 5, 6},
+		},
+		{
+			nums1: []int{1},
+			m:     1,
+			nums2: []int{},
+			n:     0,
+			want:  []int{1},
+		},
+		{
+			nums1: []int{0},
+			m:     0,
+			nums2: []int{1},
+			n:     1,
+			want:  []int{1},
+		},
+	}
+
+	for _, test := range tests {
+		if got := merge(test.nums1, test.m, test.nums2, test.n); !helper.CompareSlices(got, test.want) {
+			t.Errorf("merge(%v, %v, %v, %v) = %v, want %v", test.nums1, test.m, test.nums2, test.n, got, test.want)
 		}
 	}
 }

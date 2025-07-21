@@ -1,6 +1,9 @@
 package sorting
 
-import "testing"
+import (
+	helper "leetcode/helpers"
+	"testing"
+)
 
 func TestQuickSort(t *testing.T) {
 	t.Parallel()
@@ -44,22 +47,8 @@ func TestQuickSort(t *testing.T) {
 	}
 
 	for _, test := range tests {
-		if got := quickSort(test.nums); !compateQuickSortSlice(got, test.want) {
+		if got := quickSort(test.nums); !helper.CompareSlices(got, test.want) {
 			t.Errorf("quickSort(%v) = %v, want %v", test.nums, got, test.want)
 		}
 	}
-}
-
-func compateQuickSortSlice(result, want []int) bool {
-	if len(result) != len(want) {
-		return false
-	}
-
-	for i, num := range result {
-		if num != want[i] {
-			return false
-		}
-	}
-
-	return true
 }
