@@ -217,3 +217,39 @@ func TestMerge(t *testing.T) {
 		}
 	}
 }
+
+func TestRemoveElements(t *testing.T) {
+	t.Parallel()
+
+	tests := []struct {
+		nums      []int
+		val       int
+		wantSlice []int
+		wantValue int
+	}{
+		{
+			nums:      []int{3, 2, 2, 3},
+			val:       3,
+			wantSlice: []int{2, 2, 0, 0},
+			wantValue: 2,
+		},
+		{
+			nums:      []int{0, 1, 2, 2, 3, 0, 4, 2},
+			val:       2,
+			wantSlice: []int{0, 1, 4, 0, 3, 0, 0, 0},
+			wantValue: 5,
+		},
+		{
+			nums:      []int{1},
+			val:       1,
+			wantSlice: []int{1},
+			wantValue: 0,
+		},
+	}
+
+	for _, test := range tests {
+		if k := removeElement(test.nums, test.val); k != test.wantValue {
+			t.Errorf("removeElement = %v, want %v", k, test.wantValue)
+		}
+	}
+}
