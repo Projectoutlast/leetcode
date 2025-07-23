@@ -253,3 +253,35 @@ func TestRemoveElements(t *testing.T) {
 		}
 	}
 }
+
+func TestRemoveDuplicates(t *testing.T) {
+	t.Parallel()
+
+	tests := []struct {
+		nums []int
+		want int
+	}{
+		{
+			nums: []int{1, 1, 2},
+			want: 2,
+		},
+		{
+			nums: []int{0, 0, 1, 1, 1, 2, 2, 3, 3, 4},
+			want: 5,
+		},
+		{
+			nums: []int{1, 1},
+			want: 1,
+		},
+		{
+			nums: []int{1, 1, 1},
+			want: 1,
+		},
+	}
+
+	for _, test := range tests {
+		if got := removeDuplicates(test.nums); got != test.want {
+			t.Errorf("removeDuplicates(%v) = %v, want %v", test.nums, got, test.want)
+		}
+	}
+}

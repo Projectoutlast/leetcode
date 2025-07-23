@@ -3,10 +3,9 @@ package main
 import "fmt"
 
 func main() {
-	num := 10
+	var first string
+	second := ""
+	var third = new(string)
 
-	for num > 0 {
-		fmt.Println(num % 10)
-		num /= 10
-	}
+	fmt.Println(first, second, *third)
 }
