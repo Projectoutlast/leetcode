@@ -285,3 +285,31 @@ func TestRemoveDuplicates(t *testing.T) {
 		}
 	}
 }
+
+func TestCheckIfExist(t *testing.T) {
+	t.Parallel()
+
+	tests := []struct {
+		arr  []int
+		want bool
+	}{
+		{
+			arr:  []int{10, 2, 5, 3},
+			want: true,
+		},
+		{
+			arr:  []int{3, 1, 7, 11},
+			want: false,
+		},
+		{
+			arr:  []int{7,1,14,11},
+			want: true,
+		},
+	}
+
+	for _, test := range tests {
+		if got := checkIfExist(test.arr); got != test.want {
+			t.Errorf("checkIfExist(%v) = %v, want %v", test.arr, got, test.want)
+		}
+	}
+}
