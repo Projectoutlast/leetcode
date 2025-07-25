@@ -302,7 +302,7 @@ func TestCheckIfExist(t *testing.T) {
 			want: false,
 		},
 		{
-			arr:  []int{7,1,14,11},
+			arr:  []int{7, 1, 14, 11},
 			want: true,
 		},
 	}
@@ -310,6 +310,38 @@ func TestCheckIfExist(t *testing.T) {
 	for _, test := range tests {
 		if got := checkIfExist(test.arr); got != test.want {
 			t.Errorf("checkIfExist(%v) = %v, want %v", test.arr, got, test.want)
+		}
+	}
+}
+
+func TestValidMountainArray(t *testing.T) {
+	t.Parallel()
+
+	tests := []struct {
+		arr  []int
+		want bool
+	}{
+		{
+			arr:  []int{2, 1},
+			want: false,
+		},
+		{
+			arr:  []int{3, 5, 5},
+			want: false,
+		},
+		{
+			arr:  []int{0, 3, 2, 1},
+			want: true,
+		},
+		{
+			arr:  []int{0, 1, 2, 3, 4, 3, 2, 5, 1, 0},
+			want: false,
+		},
+	}
+
+	for _, test := range tests {
+		if got := validMountainArray(test.arr); got != test.want {
+			t.Errorf("validMountainArray(%v) = %v, want %v", test.arr, got, test.want)
 		}
 	}
 }
