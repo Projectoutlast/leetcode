@@ -338,11 +338,11 @@ func TestValidMountainArray(t *testing.T) {
 			want: false,
 		},
 		{
-			arr:  []int{0,1,2,3,4,5,6,7,8,9},
+			arr:  []int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9},
 			want: false,
 		},
 		{
-			arr:  []int{9,8,7,6,5,4,3,2,1,0},
+			arr:  []int{9, 8, 7, 6, 5, 4, 3, 2, 1, 0},
 			want: false,
 		},
 	}
@@ -350,6 +350,35 @@ func TestValidMountainArray(t *testing.T) {
 	for _, test := range tests {
 		if got := validMountainArray(test.arr); got != test.want {
 			t.Errorf("validMountainArray(%v) = %v, want %v", test.arr, got, test.want)
+		}
+	}
+}
+
+func TestReplaceElements(t *testing.T) {
+	t.Parallel()
+
+	tests := []struct {
+		arr  []int
+		want []int
+	}{
+		{
+			arr:  []int{17, 18, 5, 4, 6, 1},
+			want: []int{18, 6, 6, 6, 1, -1},
+		},
+		{
+			arr:  []int{400},
+			want: []int{-1},
+		},
+		{
+			arr:  []int{1, 2, 3, 4, 5},
+			want: []int{5, 5, 5, 5, -1},
+		},
+		
+	}
+
+	for _, test := range tests {
+		if got := replaceElements(test.arr); !helper.CompareSlices(got, test.want) {
+			t.Errorf("replaceElements(%v) = %v, want %v", test.arr, got, test.want)
 		}
 	}
 }
