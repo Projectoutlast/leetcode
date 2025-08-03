@@ -5,25 +5,21 @@ func validMountainArray(arr []int) bool {
 		return false
 	}
 
-	var increasing, decreascing bool
+	var upStep, downStep int64
 
 	for i := 0; i < len(arr)-1; i++ {
-		if arr[i] == arr[i+1] {
+
+		switch {
+		case arr[i] == arr[i+1]:
 			return false
-		}
-
-		if arr[i] < arr[i+1] && !increasing {
-			continue
-		}
-
-		increasing = true
-
-		if arr[i] > arr[i+1] && increasing && !decreascing {
-			continue
+		case arr[i] < arr[i+1] && downStep < 1:
+			upStep++
+		case arr[i] > arr[i+1] && upStep > 0:
+			downStep++
+		default:
+			return false
 		}
 	}
 
-	decreascing = true
-
-	return increasing && decreascing
+	return upStep > 0 && downStep > 0
 }
