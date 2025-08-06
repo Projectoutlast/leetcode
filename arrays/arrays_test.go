@@ -1,6 +1,7 @@
 package arrays
 
 import (
+	"slices"
 	"testing"
 
 	helper "leetcode/helpers"
@@ -373,12 +374,44 @@ func TestReplaceElements(t *testing.T) {
 			arr:  []int{1, 2, 3, 4, 5},
 			want: []int{5, 5, 5, 5, -1},
 		},
-		
 	}
 
 	for _, test := range tests {
 		if got := replaceElements(test.arr); !helper.CompareSlices(got, test.want) {
 			t.Errorf("replaceElements(%v) = %v, want %v", test.arr, got, test.want)
+		}
+	}
+}
+
+func TestMoveZeroes(t *testing.T) {
+	t.Parallel()
+
+	tests := []struct {
+		arr  []int
+		want []int
+	}{
+		{
+			arr:  []int{0, 1, 0, 3, 12},
+			want: []int{1, 3, 12, 0, 0},
+		},
+		{
+			arr:  []int{0},
+			want: []int{0},
+		},
+		{
+			arr:  []int{0, 0, 0, 0},
+			want: []int{0, 0, 0, 0},
+		},
+		{
+			arr:  []int{1, 1, 0, 0, 3, 95, 0, 35, 45},
+			want: []int{1, 1, 3, 95, 35, 45, 0, 0, 0},
+		},
+	}
+
+	for _, test := range tests {
+		moveZeroes(test.arr)
+		if !slices.Equal(test.arr, test.want) {
+			t.Errorf("moveZeroes = %v, want %v", test.arr, test.want)
 		}
 	}
 }
