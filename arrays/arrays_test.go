@@ -415,3 +415,36 @@ func TestMoveZeroes(t *testing.T) {
 		}
 	}
 }
+
+func TestSortArrayByParity(t *testing.T) {
+	t.Parallel()
+
+	tests := []struct {
+		nums []int
+		want []int
+	}{
+		{
+			nums: []int{3, 1, 2, 4},
+			want: []int{2, 4, 3, 1},
+		},
+		{
+			nums: []int{0},
+			want: []int{0},
+		},
+		{
+			nums: []int{1, 0, 3, 5},
+			want: []int{0, 1, 3, 5},
+		},
+	}
+
+	for _, test := range tests {
+		got := sortArrayByParity(test.nums)
+
+		for _, item := range got {
+			if !slices.Contains(test.want, item) {
+				t.Errorf("sortArrayByParity, result array %v not contain %v", test.want, item)
+			}
+		}
+	}
+
+}
