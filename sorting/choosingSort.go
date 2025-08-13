@@ -5,7 +5,7 @@ func choosingSort(arr []int) []int {
 		return arr
 	}
 
-	for i := 0; i < len(arr); i++ {
+	for i := range arr {
 		minNum := arr[i]
 		minNumIdx := i
 
