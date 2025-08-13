@@ -5,10 +5,8 @@ import (
 	"testing"
 )
 
-func TestQuickSort(t *testing.T) {
-	t.Parallel()
-
-	tests := []struct {
+var (
+	tests = []struct {
 		nums []int
 		want []int
 	}{
@@ -45,10 +43,34 @@ func TestQuickSort(t *testing.T) {
 			want: []int{-1, -1, 0, 2, 2},
 		},
 	}
+)
+
+func TestQuickSort(t *testing.T) {
+	t.Parallel()
 
 	for _, test := range tests {
 		if got := quickSort(test.nums); !helper.CompareSlices(got, test.want) {
 			t.Errorf("quickSort(%v) = %v, want %v", test.nums, got, test.want)
+		}
+	}
+}
+
+func TestBubbleSort(t *testing.T) {
+	t.Parallel()
+
+	for _, test := range tests {
+		if got := bubbleSort(test.nums); !helper.CompareSlices(got, test.want) {
+			t.Errorf("bubbleSort(%v) = %v, want %v", test.nums, got, test.want)
+		}
+	}
+}
+
+func TestChoosingSort(t *testing.T) {
+	t.Parallel()
+
+	for _, test := range tests {
+		if got := choosingSort(test.nums); !helper.CompareSlices(got, test.want) {
+			t.Errorf("choosingSort(%v) = %v, want %v", test.nums, got, test.want)
 		}
 	}
 }
