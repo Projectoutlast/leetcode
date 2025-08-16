@@ -446,5 +446,72 @@ func TestSortArrayByParity(t *testing.T) {
 			}
 		}
 	}
+}
 
+func TestHeightChecker(t *testing.T) {
+	t.Parallel()
+
+	tests := []struct {
+		heights []int
+		want    int
+	}{
+		{
+			heights: []int{1, 1, 4, 2, 1, 3},
+			want:    3,
+		},
+		{
+			heights: []int{5, 1, 2, 3, 4},
+			want:    5,
+		},
+		{
+			heights: []int{1, 2, 3, 4, 5},
+			want:    0,
+		},
+	}
+
+	for _, test := range tests {
+		if got := heightChecker(test.heights); got != test.want {
+			t.Errorf("heightChecker(%v) = %v, want %v", test.heights, got, test.want)
+		}
+	}
+}
+
+func TestThirdMax(t *testing.T) {
+	t.Parallel()
+
+	tests := []struct {
+		nums []int
+		want int
+	}{
+		{
+			nums: []int{3, 2, 1},
+			want: 1,
+		},
+		{
+			nums: []int{1, 2},
+			want: 2,
+		},
+		{
+			nums: []int{2, 2, 3, 1},
+			want: 1,
+		},
+		{
+			nums: []int{2, 2, 3, 3, 3, 4, 4, 4, 4},
+			want: 2,
+		},
+		{
+			nums: []int{5, 2, 2},
+			want: 5,
+		},
+		{
+			nums: []int{1, 2, 2, 5, 3, 5},
+			want: 2,
+		},
+	}
+
+	for _, test := range tests {
+		if got := thirdMax(test.nums); got != test.want {
+			t.Errorf("thirdMax(%v) = %v, want %v", test.nums, got, test.want)
+		}
+	}
 }
