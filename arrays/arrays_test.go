@@ -515,3 +515,35 @@ func TestThirdMax(t *testing.T) {
 		}
 	}
 }
+
+func TestFindDisappearedNumbers(t *testing.T) {
+	t.Parallel()
+
+	tests := []struct {
+		nums []int
+		want []int
+	}{
+		{
+			nums: []int{4, 3, 2, 7, 8, 2, 3, 1},
+			want: []int{5, 6},
+		},
+		{
+			nums: []int{1, 1},
+			want: []int{2},
+		},
+		{
+			nums: []int{2, 2},
+			want: []int{1},
+		},
+		{
+			nums: []int{1, 1, 2, 2},
+			want: []int{3, 4},
+		},
+	}
+
+	for _, test := range tests {
+		if got := findDisappearedNumbers(test.nums); !slices.Equal(got, test.want) {
+			t.Errorf("findDisappearedNumbers(%v) = %v, want %v", test.nums, got, test.want)
+		}
+	}
+}
