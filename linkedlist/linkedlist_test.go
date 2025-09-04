@@ -1,6 +1,8 @@
 package linkedlist
 
-import "testing"
+import (
+	"testing"
+)
 
 func TestMiddleNode(t *testing.T) {
 	t.Parallel()
@@ -89,5 +91,43 @@ func TestFastMiddleNode(t *testing.T) {
 				t.Errorf("FastMiddleNode() = %v, want %v", got.Val, tt.want.Val)
 			}
 		})
+	}
+}
+
+func TestLinkedList1(t *testing.T) {
+	t.Parallel()
+
+	ll := Constructor()
+	ll.AddAtIndex(2, 1)
+	ll.AddAtIndex(3, 4)
+	ll.AddAtTail(1)
+
+	if got := ll.Get(0); got != 1 {
+		t.Errorf("TestLinkedList1 Get - want %v, got %v", -1, got)
+	}
+
+	ll.DeleteAtIndex(0)
+
+	if got := ll.Get(0); got != -1 {
+		t.Errorf("TestLinkedList1 Get - want %v, got %v", 1, got)
+	}
+}
+
+func TestLinkedList2(t *testing.T) {
+	t.Parallel()
+
+	ll := Constructor()
+	ll.AddAtHead(1)
+	ll.AddAtTail(3)
+	ll.AddAtIndex(1, 2)
+
+	if got := ll.Get(1); got != 2 {
+		t.Errorf("TestLinkedList2 Get - want %v, got %v", 2, got)
+	}
+
+	ll.DeleteAtIndex(1)
+
+	if got := ll.Get(1); got != 3 {
+		t.Errorf("TestLinkedList2 Get - want %v, got %v", 3, got)
 	}
 }
